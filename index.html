@@ -7,12 +7,62 @@
 </head>
 <body>
     <script>
-        let words = ["Rock", "Paper", "Scissors"]
 
+        let words = ["Rock", "Paper", "Scissors"]
+        // function that randomly returns one of the valid words
         function computerPlay() {
-            return (words[Math.random()*3])
+            return (words[Math.floor(Math.random()*2)])
         }
-        
+
+
+        // function that returns string of whether the player is loser or winner
+        // also, it states user word and computer word
+        function result(state,beaten, beater) {
+            return `You ${state.toString().toUpperCase()}, ${beater} beats ${beaten}`
+        }
+
+        //create functio to play a round
+        //make the entries lowercase
+        //make switch statement
+        //3 cases of the first 
+
+        function round(playerSelection, computerSelection) {
+            playerSelection = playerSelection.toLowerCase();
+            computerSelection = computerSelection.toLowerCase();
+            if (playerSelection == computerSelection) {
+                return "Tie, Play Again!"
+            }
+
+            // look for the user selection then compare it with computer selection
+            // return a string that determone whether the player is loser
+            // or winner, and state word or loser and winner
+            
+            switch(playerSelection) {
+                case "rock":
+                    if (computerSelection == "paper") {
+                        return result("lose",playerSelection, computerSelection)
+                    }
+                    else {
+                        return result("win","Scissors", "rock")
+                    }
+                case "paper":
+                    if (computerSelection == "scissors") {
+                        return result("lose","paper", "scissors")
+                    }
+                    else {
+                        return result("win", playerSelection, computerSelection)
+                    }
+                case "scissors":
+                    if (computerSelection == "paper") {
+                        return result("win", computerSelection, playerSelection)
+                    }
+                    else {
+                        return result("lose", playerSelection, computerSelection)
+                    }
+                default:
+                    return "Please Enter one of the valid words \"Scissors, Rock, Paper\""
+                }
+            }
     </script>
 </body>
 </html>
